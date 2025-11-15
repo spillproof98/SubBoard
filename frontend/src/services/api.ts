@@ -3,7 +3,7 @@ import { getAccessToken, setAccessToken } from "../utils/storage";
 import { refreshToken } from "./auth.api";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000/api",
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,  // enables httpOnly cookie refresh tokens
 });
 
