@@ -1,0 +1,41 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            Int           @id @default(autoincrement())
+  name          String
+  email         String        @unique
+  password      String
+  role          String        @default("user")
+  subscriptions Subscription[]
+  createdAt     DateTime      @default(now())
+}
+
+model Plan {
+  id            Int           @id @default(autoincrement())
+  name          String
+  slug          String        @unique
+  price         Float
+  durationDays  Int
+  billingCycle  String
+  features      String         // JSON ARRAY as TEXT
+  createdAt     DateTime       @default(now())
+  subscriptions Subscription[]
+}
+
+model Subscription {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  planId    Int
+  startDate DateTime
+  endDate   DateTime
+  status    String   @default("active")
+  user      User     @relation(fields: [userId], references: [id])
+  plan      Plan     @relation(fields: [planId], references: [id])
+}
