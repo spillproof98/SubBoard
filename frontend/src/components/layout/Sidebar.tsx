@@ -10,7 +10,7 @@ export default function Sidebar() {
       transition={{ duration: 0.3 }}
       className="min-h-screen gradient-brand-dark glass text-white p-6 border-r"
     >
-      <h1 className="text-3xl font-bold mb-10">SubBoard</h1>
+      <h1 className="text-3xl font-bold mb-10">SubsBoard</h1>
 
       <nav className="space-y-4">
         <SidebarItem to="/app" Icon={Home} label="Dashboard" />
